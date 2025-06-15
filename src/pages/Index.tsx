@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -37,12 +36,12 @@ const Index = () => {
     <TooltipProvider>
       <div className="min-h-screen w-full text-foreground p-4 sm:p-8">
         <header className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400 pb-2">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400 pb-2">
             Estimate number of galaxies in visible Universe from deep field images
           </h1>
           <div className="text-muted-foreground mt-4 max-w-3xl mx-auto text-justify space-y-4">
             <p>
-              Most of the objects visible in the deep field images are galaxies: The region was selected for having only a few foreground objects from our own galaxy, the Milky Way.
+              Most of the objects visible in the deep field images are galaxies: The regions were selected for having only a few foreground objects from our own galaxy, the Milky Way.
             </p>
             <p>
               The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
