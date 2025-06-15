@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -5,27 +6,39 @@ import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ImageIcon, ZoomIn, Sparkles, Info } from 'lucide-react';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const DEEP_FIELD_IMAGES = [
   {
     name: "Webb's First Deep Field",
     url: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Webb%27s_First_Deep_Field.jpg',
   },
+  {
+    name: "Hubble Ultra-Deep Field",
+    url: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Hubble_ultra_deep_field_high_rez_edit1.jpg',
+  },
 ];
 
 const Index = () => {
-  const [selectedImage] = useState(DEEP_FIELD_IMAGES[0]);
+  const [selectedImage, setSelectedImage] = useState(DEEP_FIELD_IMAGES[0]);
   const [brightnessThreshold, setBrightnessThreshold] = useState(100);
   const [objectCount, setObjectCount] = useState(0);
 
   const debouncedThreshold = useDebounce(brightnessThreshold, 300);
+
+  const handleImageChange = (imageName: string) => {
+    const image = DEEP_FIELD_IMAGES.find(img => img.name === imageName);
+    if (image) {
+      setSelectedImage(image);
+    }
+  };
 
   return (
     <TooltipProvider>
       <div className="min-h-screen w-full text-foreground p-4 sm:p-8">
         <header className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400">
-            Astro Object Identifier
+            Estimate number of galaxies in visible Universe from deep field images
           </h1>
           <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
             Select a deep space image and adjust the brightness threshold to identify stars, galaxies, and other celestial bodies.
@@ -38,12 +51,22 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ImageIcon className="h-5 w-5" />
-                  Selected Image
+                  Image Selection
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="font-semibold">{selectedImage.name}</p>
-                <p className="text-sm text-muted-foreground">More images will be available soon.</p>
+                <Select onValueChange={handleImageChange} defaultValue={selectedImage.name}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a deep field image" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {DEEP_FIELD_IMAGES.map((image) => (
+                      <SelectItem key={image.name} value={image.name}>
+                        {image.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </CardContent>
             </Card>
             
@@ -110,7 +133,7 @@ const Index = () => {
                         <p className="max-w-xs">
                           Most of the identified objects in the deep field image are galaxies. This is because the region was selected for having one of the least number of objects from our own galaxy, the Milky Way.
                           <br /><br />
-                          The area imaged is about ten billionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
+                          The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
                           <br /><br />
                           Zoom into the darkest regions of the image using mouse scroll and it is likely that you will see objects that are not identified by the tool. This means that the actual number of objects is more than identified by the tool.
                         </p>
