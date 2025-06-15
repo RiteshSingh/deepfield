@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -47,7 +48,7 @@ const Index = () => {
               The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
             </p>
             <p>
-              Zoom into the darkest regions of the image using mouse scroll and it is likely that you will see objects that are not identified by the tool. This means that the actual number of objects is more than identified by the tool.
+              Zoom into the darkest regions of the image using mouse scroll or zoom buttons, and it is likely that you will see objects that are not identified by the tool. This means that the actual number of objects is more than identified by the tool.
             </p>
           </div>
         </header>
