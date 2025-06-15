@@ -214,7 +214,14 @@ const ImageProcessor: React.FC<ImageProcessorProps> = ({
     <div className="relative w-full min-h-[400px] flex items-center justify-center bg-black overflow-hidden rounded-md">
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-card/50">
-           <Skeleton className="w-[95%] h-[95%]" />
+          <div className="relative h-[95%] w-[95%]">
+            <Skeleton className="h-full w-full" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-lg font-medium text-foreground text-center p-4">
+                Loading high resolution image...
+              </p>
+            </div>
+          </div>
         </div>
       )}
       <canvas
