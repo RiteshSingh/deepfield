@@ -28,7 +28,7 @@
   }
 
   .dark {
-    --background: 224 71% 4%; /* Deep space blue */
+    --background: 0 0% 0%; /* Black */
     --foreground: 210 40% 98%; /* Bright white/light blue */
     --card: 223 39% 10%;
     --card-foreground: 210 40% 98%;

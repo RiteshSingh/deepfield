@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -39,7 +38,7 @@ const Index = () => {
         <main className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2 flex flex-col gap-8">
             <header className="text-left">
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white pb-2">
+              <h1 className="text-lg sm:text-xl font-bold tracking-tight text-white pb-2">
                 Estimate number of galaxies in visible Universe from deep field images
               </h1>
               <div className="text-muted-foreground mt-4 max-w-3xl text-justify space-y-4">
@@ -123,7 +122,7 @@ const Index = () => {
 
                   <div className="text-center bg-background/50 p-4 rounded-lg">
                     <h3 className="text-lg font-semibold text-muted-foreground">Identified Objects</h3>
-                    <p className="text-5xl font-bold text-primary animate-pulse">
+                    <p className="text-5xl font-bold text-primary">
                       {objectCount.toLocaleString()}
                     </p>
                   </div>
