@@ -1,8 +1,9 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { identifyBrightObjects, BoundingBox } from '@/lib/image-processing';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw, Plus, Minus } from 'lucide-react';
 
 interface ImageProcessorProps {
   imageUrl: string;
@@ -31,6 +32,40 @@ const ImageProcessor: React.FC<ImageProcessorProps> = ({
     setZoom(1);
     setOffset({ x: 0, y: 0 });
   };
+
+  const applyZoom = (scaleFactor: number) => {
+    if (!canvasRef.current) return;
+    
+    const newZoom = Math.max(1, zoom * scaleFactor);
+
+    if (newZoom === 1) {
+        resetTransform();
+        return;
+    }
+    
+    if (newZoom === zoom) return; // e.g. zoom out at zoom 1
+
+    // Center of the canvas
+    const centerX = canvasSize.width / 2;
+    const centerY = canvasSize.height / 2;
+
+    const imagePoint = {
+      x: (centerX - offset.x) / zoom,
+      y: (centerY - offset.y) / zoom,
+    };
+    
+    let newOffsetX = centerX - imagePoint.x * newZoom;
+    let newOffsetY = centerY - imagePoint.y * newZoom;
+    
+    newOffsetX = Math.min(0, Math.max(canvasSize.width * (1 - newZoom), newOffsetX));
+    newOffsetY = Math.min(0, Math.max(canvasSize.height * (1 - newZoom), newOffsetY));
+
+    setZoom(newZoom);
+    setOffset({ x: newOffsetX, y: newOffsetY });
+  };
+
+  const handleZoomIn = () => applyZoom(1.2);
+  const handleZoomOut = () => applyZoom(1 / 1.2);
 
   // Effect 1: Load image from URL
   useEffect(() => {
@@ -128,6 +163,12 @@ const ImageProcessor: React.FC<ImageProcessorProps> = ({
     const scaleAmount = -event.deltaY * 0.001;
     const newZoom = Math.max(1, zoom + scaleAmount * zoom);
 
+    if (newZoom === 1) {
+      resetTransform();
+      return;
+    }
+    if (newZoom === zoom) return;
+
     const rect = canvasRef.current.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
@@ -187,7 +228,13 @@ const ImageProcessor: React.FC<ImageProcessorProps> = ({
         onMouseMove={handleMouseMove}
       />
        {!isLoading && (
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 right-4 z-10 flex gap-2">
+            <Button variant="secondary" size="icon" onClick={handleZoomIn} title="Zoom In">
+              <Plus className="h-5 w-5" />
+            </Button>
+             <Button variant="secondary" size="icon" onClick={handleZoomOut} title="Zoom Out">
+              <Minus className="h-5 w-5" />
+            </Button>
             <Button variant="secondary" size="icon" onClick={resetTransform} title="Reset view">
               <RotateCcw className="h-5 w-5" />
             </Button>
