@@ -133,7 +133,7 @@ const Index = () => {
                     <span>Est. Galaxies in Visible Universe</span>
                   </h3>
                   <p className="text-3xl font-bold text-primary mt-2">
-                    {objectCount > 0 ? `~${(objectCount * 1e8).toExponential(2)}` : '0'}
+                    {objectCount > 0 ? `~${Math.round(objectCount / 10).toLocaleString()} billion` : '0'}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
                     (Based on Identified Objects × 10⁸)
