@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/<YOUR_REPO_NAME>/', // IMPORTANT: Replace <YOUR_REPO_NAME> with your repo name.
+  base: '/estimating-galaxies-visible-universe/', // IMPORTANT: Replace <YOUR_REPO_NAME> with your repo name.
   server: {
     host: "::",
     port: 8080,
