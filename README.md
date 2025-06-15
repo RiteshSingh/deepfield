@@ -1,73 +1,77 @@
-# Welcome to your Lovable project
 
-## Project info
+# Galaxy Estimator from Deep Field Images
 
-**URL**: https://lovable.dev/projects/0bc8115a-80b9-4954-aa85-b2a1343491b8
+This web application provides an interactive tool for estimating the number of galaxies in the observable universe based on an analysis of deep field images from the Hubble and James Webb Space Telescopes.
 
-## How can I edit this code?
+## Scientific Background
 
-There are several ways of editing your application.
+Telescopes like the Hubble and JWST can stare at a tiny, seemingly empty patch of the sky for an extended period. This allows them to capture extremely faint light from the most distant galaxies. The resulting images, known as "deep fields," reveal thousands of galaxies in an area of the sky that is just a small fraction of the size of the full moon.
 
-**Use Lovable**
+By counting the galaxies in this tiny patch and knowing what fraction of the total sky it represents, we can extrapolate to estimate the total number of galaxies in the entire universe.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0bc8115a-80b9-4954-aa85-b2a1343491b8) and start prompting.
+## Methodology
 
-Changes made via Lovable will be committed automatically to this repo.
+The application employs a computational image processing technique to identify and count objects (primarily galaxies) within the selected deep field image.
 
-**Use your preferred IDE**
+### 1. Image Pre-processing
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The high-resolution source image is first scaled down to a manageable width (e.g., 1024 pixels) to ensure the analysis can be performed efficiently in the browser. This resizing maintains the aspect ratio of the original image.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 2. Object Identification via Brightness Thresholding
 
-Follow these steps:
+The core of the object detection is a pixel-based analysis algorithm. The user can control a **Brightness Threshold**, which is a value from 0 (black) to 255 (white).
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+For each pixel in the image, its brightness is calculated as the average of its Red, Green, and Blue (RGB) color values:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+`Brightness = (R + G + B) / 3`
 
-# Step 3: Install the necessary dependencies.
-npm i
+A pixel is considered part of a celestial object if its calculated brightness is greater than or equal to the user-defined `Brightness Threshold`.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### 3. Bounding Box Creation via Flood Fill Algorithm
 
-**Edit a file directly in GitHub**
+Once a bright pixel is identified, the application needs to determine the full extent of the object it belongs to. This is achieved using a **Flood Fill (or Seed Fill)** algorithm, a common technique in computer graphics. Here is a step-by-step description of how it works:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1.  **Initialization**: The algorithm begins when it finds a pixel that is above the brightness threshold and has not yet been assigned to an object. This pixel becomes the "seed" for a new potential object.
 
-**Use GitHub Codespaces**
+2.  **Breadth-First Search (BFS)**: A queue is initialized with the seed pixel. The algorithm then explores its neighbors.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3.  **Expansion**: The algorithm checks all 8 neighboring pixels (horizontally, vertically, and diagonally). If a neighbor is also above the brightness threshold and hasn't been visited yet, it is added to the queue and marked as part of the current object.
 
-## What technologies are used for this project?
+4.  **Iteration**: This process repeats, taking the next pixel from the queue and checking its neighbors, until the queue is empty. This means all connected bright pixels have been found and grouped together.
+
+5.  **Bounding Box Calculation**: Throughout the flood fill process, the algorithm keeps track of the minimum and maximum X and Y coordinates (`minX`, `minY`, `maxX`, `maxY`) of all pixels belonging to the object. Once the fill is complete, these coordinates are used to define a rectangular bounding box that encloses the entire object.
+
+This process is repeated for the entire image until every pixel has been visited, resulting in a list of all identified objects, each with its own bounding box.
+
+### 4. Galaxy Count Estimation
+
+The area of the sky captured in these deep field images is approximately **1 / 26,000,000th** of the entire celestial sphere. The total number of galaxies in the observable universe can be estimated by extrapolating the count from our sample:
+
+`Estimated Total Galaxies = (Number of Identified Objects) × 26,000,000`
+
+The application calculates this value and presents it in billions for readability.
+
+## Limitations
+
+This tool provides a simplified estimation and is subject to several limitations:
+-   **Threshold Sensitivity**: The number of identified objects is highly dependent on the chosen brightness threshold.
+-   **Object Merging**: At lower thresholds, distinct but close-together galaxies may be merged into a single bounding box.
+-   **Faint Objects**: Many of the faintest, most distant galaxies may fall below any selectable brightness threshold and will not be counted.
+-   **Foreground Stars**: A few of the bright objects are foreground stars within our own Milky Way galaxy, not distant galaxies.
+
+Despite these limitations, the application serves as a powerful educational tool for demonstrating the principles behind how astronomers arrive at these monumental figures.
+
+## Image Credits
+
+-   **Webb's First Deep Field**: NASA, ESA, CSA, and STScI
+-   **Hubble Ultra-Deep Field**: NASA, ESA, and S. Beckwith (STScI) and the HUDF Team
+-   Images sourced from Wikimedia Commons.
+
+## Technology Stack
 
 This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0bc8115a-80b9-4954-aa85-b2a1343491b8) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+-   Vite
+-   TypeScript
+-   React
+-   shadcn-ui
+-   Tailwind CSS
