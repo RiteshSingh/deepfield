@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -40,8 +39,8 @@ const Index = () => {
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400">
             Estimate number of galaxies in visible Universe from deep field images
           </h1>
-          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Select a deep space image and adjust the brightness threshold to identify stars, galaxies, and other celestial bodies.
+          <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
+            Most of the identified objects in the deep field image are galaxies. This is because the region was selected for having one of the least number of objects from our own galaxy, the Milky Way. The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸. Zoom into the darkest regions of the image using mouse scroll and it is likely that you will see objects that are not identified by the tool. This means that the actual number of objects is more than identified by the tool.
           </p>
         </header>
 
@@ -122,23 +121,7 @@ const Index = () => {
                 <div className="text-center bg-background/50 p-4 rounded-lg">
                   <h3 className="text-lg font-semibold text-muted-foreground flex items-center justify-center gap-2">
                     <Sparkles className="h-5 w-5 text-yellow-400" />
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="flex items-center gap-1 cursor-help">
-                          <span>Est. Galaxies in Visible Universe</span>
-                          <Info className="h-4 w-4 text-muted-foreground" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p className="max-w-xs">
-                          Most of the identified objects in the deep field image are galaxies. This is because the region was selected for having one of the least number of objects from our own galaxy, the Milky Way.
-                          <br /><br />
-                          The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
-                          <br /><br />
-                          Zoom into the darkest regions of the image using mouse scroll and it is likely that you will see objects that are not identified by the tool. This means that the actual number of objects is more than identified by the tool.
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
+                    <span>Est. Galaxies in Visible Universe</span>
                   </h3>
                   <p className="text-3xl font-bold text-primary mt-2">
                     {objectCount > 0 ? `~${(objectCount * 1e8).toExponential(2)}` : '0'}
