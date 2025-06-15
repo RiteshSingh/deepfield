@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -42,7 +41,7 @@ const Index = () => {
           </h1>
           <div className="text-muted-foreground mt-4 max-w-3xl mx-auto text-left space-y-4">
             <p>
-              Most of the objects visible in the deep field image are galaxies: The region was selected for having only a few foreground objects from our own galaxy, the Milky Way.
+              Most of the objects visible in the deep field images are galaxies: The region was selected for having only a few foreground objects from our own galaxy, the Milky Way.
             </p>
             <p>
               The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
