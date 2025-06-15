@@ -40,7 +40,7 @@ const Index = () => {
           <div className="lg:col-span-2 flex flex-col gap-8">
             <header className="text-left">
               <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white pb-2">
-                Counting galaxies in the visible Universe from deep field images
+                Estimating galaxies in the visible Universe from deep field images
               </h1>
               <div className="text-muted-foreground mt-4 max-w-3xl text-justify space-y-4">
                 <p>
@@ -131,7 +131,7 @@ const Index = () => {
                   <div className="text-center bg-background/50 p-4 rounded-lg">
                     <h3 className="text-lg font-semibold text-muted-foreground flex items-center justify-center gap-2">
                       <Sparkles className="h-5 w-5 text-yellow-400" />
-                      <span>Est. Galaxies in Visible Universe</span>
+                      <span>Estimated Galaxies in Visible Universe</span>
                     </h3>
                     <p className="text-3xl font-bold text-primary mt-2">
                       {objectCount > 0 ? `~${Math.round(objectCount / 10).toLocaleString()} billion` : '0'}
