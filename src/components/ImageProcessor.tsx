@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { identifyBrightObjects } from '@/lib/image-processing';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -33,8 +32,8 @@ const ImageProcessor: React.FC<ImageProcessorProps> = ({
     img.onload = () => {
       const MAX_WIDTH = 1024;
       const scale = Math.min(1, MAX_WIDTH / img.width);
-      const canvasWidth = img.width * scale;
-      const canvasHeight = img.height * scale;
+      const canvasWidth = Math.floor(img.width * scale);
+      const canvasHeight = Math.floor(img.height * scale);
 
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
