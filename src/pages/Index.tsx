@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -36,10 +37,10 @@ const Index = () => {
     <TooltipProvider>
       <div className="min-h-screen w-full text-foreground p-4 sm:p-8">
         <header className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400 pb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400 pb-2">
             Estimate number of galaxies in visible Universe from deep field images
           </h1>
-          <div className="text-muted-foreground mt-4 max-w-3xl mx-auto text-left space-y-4">
+          <div className="text-muted-foreground mt-4 max-w-3xl mx-auto text-justify space-y-4">
             <p>
               Most of the objects visible in the deep field images are galaxies: The region was selected for having only a few foreground objects from our own galaxy, the Milky Way.
             </p>
@@ -96,7 +97,7 @@ const Index = () => {
                         </span>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p className="max-w-xs">
+                        <p className="max-w-xs text-justify">
                           The Brightness Threshold is the pixel value above which the tool considers a pixel as bright, and below which it considers a pixel as dark.
                           <br /><br />
                           The lower the Brightness Threshold, the dimmer the object which can be identified. However, if it is too low, some of the objects start getting clubbed into one object.
