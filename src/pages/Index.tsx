@@ -37,7 +37,7 @@ const Index = () => {
     <TooltipProvider>
       <div className="min-h-screen w-full text-foreground p-4 sm:p-8">
         <header className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400 pb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400 pb-2">
             Estimate number of galaxies in visible Universe from deep field images
           </h1>
           <div className="text-muted-foreground mt-4 max-w-3xl mx-auto text-left space-y-4">
