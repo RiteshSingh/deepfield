@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 const DEEP_FIELD_IMAGES = [
   {
-    name: "Webb's First Deep Field",
+    name: "Webb First Deep Field",
     url: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Webb%27s_First_Deep_Field.jpg',
   },
   {
