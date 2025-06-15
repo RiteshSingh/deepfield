@@ -33,6 +33,9 @@ const Index = () => {
     }
   };
 
+  const estimatedGalaxiesInBillions =
+    objectCount > 0 ? Math.round((objectCount * 26_000_000) / 1_000_000_000) : 0;
+
   return (
     <TooltipProvider>
       <div className="min-h-screen w-full text-foreground p-4 sm:p-8">
@@ -47,7 +50,7 @@ const Index = () => {
                   Most of the objects visible in the deep field images are galaxies: The regions were selected for having only a few foreground objects from our own galaxy, the Milky Way.
                 </p>
                 <p>
-                  The area imaged is about a hundred millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 10⁸.
+                  The area imaged is about a 26-millionth of the entire sky. So, the total number of galaxies can be estimated to be the number of identified objects × 26 million.
                 </p>
                 <p>
                   Zoom into the darkest regions of the image using mouse scroll or zoom buttons, and it is likely that you will see objects that are not identified by the tool. This means that the actual number of objects is more than identified by the tool.
@@ -134,10 +137,10 @@ const Index = () => {
                       <span>Estimated Galaxies in Visible Universe</span>
                     </h3>
                     <p className="text-3xl font-bold text-primary mt-2">
-                      {objectCount > 0 ? `~${Math.round(objectCount / 10).toLocaleString()} billion` : '0'}
+                      {objectCount > 0 ? `~${estimatedGalaxiesInBillions.toLocaleString()} billion` : '0'}
                     </p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      (Based on Identified Objects × 10⁸)
+                      (Based on Identified Objects × 26 million)
                     </p>
                   </div>
                 </CardContent>
@@ -165,3 +168,4 @@ const Index = () => {
 };
 
 export default Index;
+
