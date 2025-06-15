@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { identifyBrightObjects, BoundingBox } from '@/lib/image-processing';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -93,9 +94,10 @@ const ImageProcessor: React.FC<ImageProcessorProps> = ({
     const ctx = processingCanvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
     
-    // Process the raw image without scaling down
-    const canvasWidth = image.width;
-    const canvasHeight = image.height;
+    const MAX_WIDTH = 1024;
+    const scale = Math.min(1, MAX_WIDTH / image.width);
+    const canvasWidth = Math.floor(image.width * scale);
+    const canvasHeight = Math.floor(image.height * scale);
 
     if (canvasRef.current) {
         canvasRef.current.width = canvasWidth;
