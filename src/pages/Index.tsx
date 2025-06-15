@@ -9,7 +9,7 @@ import { ImageIcon, ZoomIn } from 'lucide-react';
 const DEEP_FIELD_IMAGES = [
   {
     name: 'JWST Deep Field (SMACS 0723)',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Webb%27s_First_Deep_Field.jpg',
+    url: 'https://www.nasa.gov/wp-content/uploads/2023/03/main_image_deep_field_smacs0723-5mb.jpg',
   },
 ];
 
