@@ -39,8 +39,8 @@ const Index = () => {
         <main className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2 flex flex-col gap-8">
             <header className="text-left">
-              <h1 className="text-lg sm:text-xl font-bold tracking-tight text-white pb-2">
-                Estimate number of galaxies in visible Universe from deep field images
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white pb-2">
+                Counting galaxies in the visible Universe from deep field images
               </h1>
               <div className="text-muted-foreground mt-4 max-w-3xl text-justify space-y-4">
                 <p>
@@ -58,7 +58,7 @@ const Index = () => {
             <div className="flex flex-col gap-8">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl">
+                  <CardTitle className="flex items-center gap-2 text-lg">
                     <ImageIcon className="h-5 w-5" />
                     Image Selection
                   </CardTitle>
@@ -81,7 +81,7 @@ const Index = () => {
               
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl">
+                  <CardTitle className="flex items-center gap-2 text-lg">
                     <ZoomIn className="h-5 w-5" />
                     Analysis Controls
                   </CardTitle>
