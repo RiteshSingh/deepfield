@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ImageIcon, ZoomIn } from 'lucide-react';
+import { ImageIcon, ZoomIn, Sparkles } from 'lucide-react';
 
 const DEEP_FIELD_IMAGES = [
   {
@@ -76,6 +75,19 @@ const Index = () => {
                 <h3 className="text-lg font-semibold text-muted-foreground">Identified Objects</h3>
                 <p className="text-5xl font-bold text-primary animate-pulse">
                   {objectCount.toLocaleString()}
+                </p>
+              </div>
+
+              <div className="text-center bg-background/50 p-4 rounded-lg">
+                <h3 className="text-lg font-semibold text-muted-foreground flex items-center justify-center gap-2">
+                  <Sparkles className="h-5 w-5 text-yellow-400" />
+                  <span>Est. Galaxies in Visible Universe</span>
+                </h3>
+                <p className="text-3xl font-bold text-primary mt-2">
+                  {objectCount > 0 ? `~${(objectCount * 1e8).toExponential(2)}` : '0'}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  (Based on Identified Objects × 10⁸)
                 </p>
               </div>
             </CardContent>
