@@ -157,7 +157,7 @@ const Index = () => {
         </main>
 
         <footer className="text-center mt-12 text-muted-foreground text-sm">
-          <p>Built with Lovable. Image credit: NASA, ESA, CSA, and STScI.</p>
+          <p>Built with Lovable. Image credit: NASA, ESA, CSA, STScI, and Wikimedia Commons.</p>
         </footer>
       </div>
     </TooltipProvider>
