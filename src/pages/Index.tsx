@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import ImageProcessor from '@/components/ImageProcessor';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -57,7 +58,7 @@ const Index = () => {
             <div className="flex flex-col gap-8">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
                     <ImageIcon className="h-5 w-5" />
                     Image Selection
                   </CardTitle>
@@ -80,7 +81,7 @@ const Index = () => {
               
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-xl">
                     <ZoomIn className="h-5 w-5" />
                     Analysis Controls
                   </CardTitle>
