@@ -11,11 +11,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const DEEP_FIELD_IMAGES = [
   {
     name: "Webb First Deep Field",
-    url: '/deepfield/webb1024.jpg',
+    //url: '/deepfield/webb1024.jpg',
+    url: '/webb1024.jpg',
   },
   {
     name: "Hubble Ultra-Deep Field",
-    url: '/deepfield/hubble1024.jpg',
+    //url: '/deepfield/hubble1024.jpg',
+    url: '/hubble1024.jpg',
   },
 ];
 
